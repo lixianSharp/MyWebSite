@@ -13,7 +13,7 @@
         <groupId>org.lixianyuan</groupId>
         <artifactId>lixianyuan</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <!--<relativePath>../pom.xml</relativePath>-->
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <properties>
@@ -37,6 +37,17 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-autoconfigure</artifactId>
+            <version>2.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.5.1</version>
         </dependency>
     </dependencies>
 
