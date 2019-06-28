@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.lixianyuan.mapper.customer.LeaveMsgMapper">
+
+    <!--分页条件-->
+    <sql id="page_limit">
+        limit #{currentPage},#{currentSize}
+    </sql>
+
+    <!--查询条件-->
+    <sql id="query_condition">
+
+    </sql>
+
+    <resultMap id="leaveMsgResultMap" type="org.lixianyuan.entity.LeaveMsg">
+        <result property="leaveMsgId" column="LEAVEMSGID"/>
+        <result property="name" column="NAME"/>
+        <result property="email" column="EMAIL"/>
+        <result property="content" column="CONTENT"/>
+        <result property="leaveTime" column="LEAVETIME"/>
+        <result property="ipAddress" column="IPADDRESS"/>
+    </resultMap>
+
+    <insert id="addLeaveMsg" parameterType="org.lixianyuan.entity.LeaveMsg" >
+        insert into leavemsg(
+            LEAVEMSGID,
+            NAME,
+            EMAIL,
+            CONTENT,
+            LEAVETIME,
+            IPADDRESS
+        )
+        values(#{leaveMsgId},#{name},#{email},#{content},#{leaveTime},#{ipAddress})
+    </insert>
+
+    <!---分查询数据-->
+    <select id="findLeaveMsg" parameterType="java.util.Map" resultMap="leaveMsgResultMap">
+          select * from leavemsg
+          <include refid="page_limit"></include>
+    </select>
+
+    <!--根据分页条件查询总计录数-->
+    <select id="findLeaveMsgCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*) from leavemsg
+        <include refid="page_limit"></include>
+    </select>
+
+</mapper>

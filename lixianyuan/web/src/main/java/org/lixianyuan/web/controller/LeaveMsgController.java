@@ -1,14 +1,18 @@
 package org.lixianyuan.web.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.lixianyuan.entity.Leavemsg;
+
+import org.lixianyuan.entity.LeaveMsg;
+import org.lixianyuan.service.LeaveMsgService;
 import org.lixianyuan.web.util.UUIDUtil;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -21,6 +25,8 @@ import java.util.logging.Logger;
 @Controller
 public class LeaveMsgController {
 
+    @Autowired
+    private LeaveMsgService leaveMsgService;
     /**
      * 添加留言
      * @param leavemsg 添加的留言信息
@@ -28,13 +34,33 @@ public class LeaveMsgController {
      * @return 返回的添加结果
      */
     @RequestMapping(method = RequestMethod.POST, value = "/addLeaveMsg")
-    public @ResponseBody String addLeaveMsg(Leavemsg leavemsg,HttpServletRequest request) {
+    public @ResponseBody String addLeaveMsg(LeaveMsg leavemsg, HttpServletRequest request) {
         String ip = getIPAddress(request);
-        leavemsg.setLeavemsgid(UUIDUtil.getUUID());
-        leavemsg.setLeavetime(new Date());
-        leavemsg.setIpaddress(ip);
+        leavemsg.setLeaveMsgId(UUIDUtil.getUUID());
+
+        leavemsg.setLeaveTime(new Date());
+        if(ip!=null){
+            leavemsg.setIpAddress(ip);
+        }else{
+            ip = "127.0.0.1";
+        }
+
         System.out.println("接受到的数据=》"+leavemsg);
-        return "ok";
+        //数据入库
+        int result = leaveMsgService.addLeaveMsg(leavemsg);
+        return "ok"+result;
+    }
+
+    /**
+     * 查询留言
+     * @param currentPage 当前页页号
+     * @param currentSize 每页显示的记录数
+     * @return
+     */
+    @RequestMapping("/findLeaveMsg")
+    public @ResponseBody Map<String,Object> findLeaveMsg(String currentPage,String currentSize){
+        Map<String,Object> leaveMsgList = leaveMsgService.findLeaveMsg(currentPage,currentSize);
+        return leaveMsgList;
     }
 
     /**

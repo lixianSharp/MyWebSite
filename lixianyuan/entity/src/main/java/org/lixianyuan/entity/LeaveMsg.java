@@ -7,8 +7,8 @@ import java.util.Date;
  * @Date: Create in 14:28 2019/5/8
  * @Description: 留言的javabean
  */
-public class Leavemsg {
-    private String leavemsgid;
+public class LeaveMsg {
+    private String leaveMsgId;
 
     private String name;
 
@@ -16,16 +16,16 @@ public class Leavemsg {
 
     private String content;
 
-    private Date leavetime;
+    private Date leaveTime;
 
-    private String ipaddress;
+    private String ipAddress;
 
-    public String getLeavemsgid() {
-        return leavemsgid;
+    public String getLeaveMsgId() {
+        return leaveMsgId;
     }
 
-    public void setLeavemsgid(String leavemsgid) {
-        this.leavemsgid = leavemsgid;
+    public void setLeaveMsgId(String leaveMsgId) {
+        this.leaveMsgId = leaveMsgId;
     }
 
     public String getName() {
@@ -52,31 +52,31 @@ public class Leavemsg {
         this.content = content;
     }
 
-    public Date getLeavetime() {
-        return leavetime;
+    public Date getLeaveTime() {
+        return leaveTime;
     }
 
-    public void setLeavetime(Date leavetime) {
-        this.leavetime = leavetime;
+    public void setLeaveTime(Date leaveTime) {
+        this.leaveTime = leaveTime;
     }
 
-    public String getIpaddress() {
-        return ipaddress;
+    public String getIpAddress() {
+        return ipAddress;
     }
 
-    public void setIpaddress(String ipaddress) {
-        this.ipaddress = ipaddress;
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
     }
 
     @Override
     public String toString() {
         return "Leavemsg{" +
-                "leavemsgid='" + leavemsgid + '\'' +
+                "leaveMsgId='" + leaveMsgId + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", content='" + content + '\'' +
-                ", leavetime=" + leavetime +
-                ", ipaddress='" + ipaddress + '\'' +
+                ", leaveTime=" + leaveTime +
+                ", ipAddress='" + ipAddress + '\'' +
                 '}';
     }
 }

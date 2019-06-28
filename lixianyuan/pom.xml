@@ -93,7 +93,6 @@
                     <include>**/*.yml</include>
                 </includes>
             </resource>
-
         </resources>
 
     </build>
